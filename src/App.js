@@ -13,6 +13,20 @@ class App extends React.Component {
     filter:'',
   }
 
+  componentDidMount() {
+    const items = localStorage.getItem('items');
+    const parsedItems = JSON.parse(items);
+    if (parsedItems){
+      this.setState({contacts: parsedItems})
+    }
+  };
+  
+  componentDidUpdate(prevProps, prevState){
+    if(this.state.contacts !== prevState) {
+      localStorage.setItem('items', JSON.stringify(this.state.contacts));
+    }
+  }
+
   formSubmitHandler = data => {
     const normalizedFilter = data.name.toLowerCase();
     
@@ -42,19 +56,6 @@ class App extends React.Component {
   });
 } 
 
-componentDidMount() {
-  const items = localStorage.getItem('items');
-  const parsedItems = JSON.parse(items);
-  if (parsedItems){
-    this.setState({contacts: parsedItems})
-  }
-};
-
-componentDidUpdate(prevProps, prevState){
-  if(this.state.contacts !== prevState) {
-    localStorage.setItem('items', JSON.stringify(this.state.contacts));
-  }
-}
   render(){
     return (
     <div>

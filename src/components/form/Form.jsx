@@ -53,9 +53,10 @@ class Form extends React.Component {
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
               required
-              onChange={this.handleChange}
+              id={this.numberInputId}
+              onChange={this.handleInputChange}
               className = {styles.formInput}
-              id={this.numberInputId}>
+            >
             </input>
           </label>
           <button className={styles.formButton}>Add contact</button>
